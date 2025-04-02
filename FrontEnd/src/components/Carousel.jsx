@@ -2,42 +2,33 @@ import React from 'react'
 
 const Carousel = () => {
     return (
-        <div className="carousel w-full">
-            <div id="slide1" className="carousel-item relative w-full">
-                <img
-                    src=""
-                    className="w-full" />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide4" className="btn btn-circle">❮</a>
-                    <a href="#slide2" className="btn btn-circle">❯</a>
+        <div>
+            <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{ objectFit: "contain !important" }}>
+                <div className="carousel-inner max-h-[500px]">
+                    <div className='carousel-caption z-10'>
+                        <form className="d-flex ">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button className="btn btn-outline-success text-white bg-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <div className="carousel-item active">
+                        <img src="https://picsum.photos/900/750?random=1" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://picsum.photos/900/750?random=2" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://picsum.photos/900/750?random=3" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
+                    </div>
                 </div>
-            </div>
-            <div id="slide2" className="carousel-item relative w-full">
-                <img
-                    src=""
-                    className="w-full" />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide1" className="btn btn-circle">❮</a>
-                    <a href="#slide3" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-            <div id="slide3" className="carousel-item relative w-full">
-                <img
-                    src=""
-                    className="w-full" />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide2" className="btn btn-circle">❮</a>
-                    <a href="#slide4" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-            <div id="slide4" className="carousel-item relative w-full">
-                <img
-                    src=""
-                    className="w-full" />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide3" className="btn btn-circle">❮</a>
-                    <a href="#slide1" className="btn btn-circle">❯</a>
-                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     )
