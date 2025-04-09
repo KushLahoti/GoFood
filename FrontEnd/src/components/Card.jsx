@@ -21,7 +21,7 @@ const Card = () => {
                                     )
                                 })}
                             </select>
-                            <select className='m-2 h-100 bg-success rounded'>
+                            <select className='m-2 h-full bg-success rounded'>
                                 <option value="half">Half</option>
                                 <option value="full">Full</option>
                             </select>

@@ -3,10 +3,11 @@ import { User } from "../models/User.model.js"
 import { body, validationResult } from "express-validator"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import "dotenv/config"
 
 const userRouter = express.Router()
 
-const jwtSecret = "MyNameIsKushLahoti!@#$%^&*"
+const jwtSecret = process.env.JWT_SECRET
 
 userRouter.post("/createuser", [body('email').isEmail(),
 body('password', "Password must be atleast of length 8").isLength({ min: 8 }),
@@ -43,13 +44,13 @@ body('password', "Password must be atleast of length 8").isLength({ min: 8 })], 
     try {
         let userData = await User.findOne({ email });
         if (!userData) {
-            return res.status(400).json({ erros: "Invalid Login Credentials" })
+            return res.status(400).json({ errors: "Invalid Login Credentials" })
         }
 
         const compPassword = await bcrypt.compare(req.body.password, userData.password)
 
         if (!compPassword) {
-            return res.status(400).json({ erros: "Invalid Login Credentials" })
+            return res.status(400).json({ errors: "Invalid Login Credentials" })
         }
 
         const data = {
