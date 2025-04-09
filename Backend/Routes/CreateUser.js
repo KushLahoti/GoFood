@@ -4,11 +4,11 @@ import { body, validationResult } from "express-validator"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 
-const router = express.Router()
+const userRouter = express.Router()
 
 const jwtSecret = "MyNameIsKushLahoti!@#$%^&*"
 
-router.post("/createuser", [body('email').isEmail(),
+userRouter.post("/createuser", [body('email').isEmail(),
 body('password', "Password must be atleast of length 8").isLength({ min: 8 }),
 body('name').isLength({ min: 4 })], async (req, res) => {
     const errors = validationResult(req);
@@ -33,7 +33,7 @@ body('name').isLength({ min: 4 })], async (req, res) => {
     }
 })
 
-router.post("/loginuser", [body('email').isEmail(),
+userRouter.post("/loginuser", [body('email').isEmail(),
 body('password', "Password must be atleast of length 8").isLength({ min: 8 })], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -68,4 +68,4 @@ body('password', "Password must be atleast of length 8").isLength({ min: 8 })], 
     }
 })
 
-export default router
+export default userRouter
