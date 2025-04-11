@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Carousel = () => {
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            const urls = [];
+            for (let i = 0; i < 3; i++) {
+                const res = await fetch('https://foodish-api.com/api/');
+                const data = await res.json();
+                urls.push(data.image);
+            }
+            setImages(urls);
+        };
+
+        fetchImages();
+    }, []);
+
     return (
         <div>
             <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{ objectFit: "contain !important" }}>
@@ -11,15 +27,11 @@ const Carousel = () => {
                             <button className="btn btn-outline-success text-white bg-success" type="submit">Search</button>
                         </form>
                     </div>
-                    <div className="carousel-item active">
-                        <img src="https://picsum.photos/900/750?random=1" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://picsum.photos/900/750?random=2" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://picsum.photos/900/750?random=3" className="d-block w-100" style={{ filter: "brightness(30%)" }} alt="..." />
-                    </div>
+                    {images.map((img, idx) => (
+                        <div className={`carousel-item ${idx === 0 ? 'active' : ''}`} key={idx}>
+                            <img src={img} className="w-full h-[500px] object-cover brightness-50" alt={`food-${idx}`} />
+                        </div>
+                    ))}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -31,7 +43,7 @@ const Carousel = () => {
                 </button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Carousel
+export default Carousel;
