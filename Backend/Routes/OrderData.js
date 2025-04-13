@@ -32,4 +32,13 @@ orderRouter.post("/orderData", async (req, res) => {
     }
 })
 
+orderRouter.post("/myOrderData", async (req, res) => {
+    try {
+        const myData = await Orders.findOne({ email: req.body.email });
+        res.json({ order_data: myData?.order_data || [] });
+    } catch (error) {
+        res.status(500).send("Server Error: " + error.message);
+    }
+});
+
 export default orderRouter
