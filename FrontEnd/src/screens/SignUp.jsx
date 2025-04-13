@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import axios from 'axios'
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", geolocation: "" })
 
     const handleSubmit = async (e) => {
@@ -15,6 +18,7 @@ const SignUp = () => {
                 location: credentials.geolocation
             })
             if (!response.data.success) return alert("Enter Valid Credentials")
+            navigate("/login")
         } catch (error) {
             console.error("SignUp Error:", error)
             alert("Something went wrong!")

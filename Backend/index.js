@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoDB from "./db.js";
 import userRouter from "./Routes/CreateUser.js";
 import dataRouter from "./Routes/DisplayData.js"
+import orderRouter from "./Routes/OrderData.js";
 
 const app = express();
 const port = 5000;
@@ -27,6 +28,7 @@ mongoDB()
 
 app.use('/api', userRouter);
 app.use('/api', dataRouter);
+app.use('/api', orderRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
